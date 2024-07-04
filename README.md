@@ -12,7 +12,7 @@ We have also added the [visionOS-example](https://github.com/IvanCampos/visionOS
 > [!WARNING]
 > - **The visionOS, iOS, and other simulators must be installed in the platforms section of your XCode settings before proceeding.**
 >
-> ![visionOS & iOS platforms](https://developer.apple.com/documentation/xcode/installing-additional-simulator-runtimes)
+> [visionOS & iOS platforms](https://developer.apple.com/documentation/xcode/installing-additional-simulator-runtimes)
 >
 > - The client build request must be done from macOS or else it won't work.
 
