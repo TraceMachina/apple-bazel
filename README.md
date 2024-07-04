@@ -1,14 +1,13 @@
 # Apple Rules for [Bazel](https://bazel.build) 
 ### with Remote Cache and Execution via the free [NativeLink](https://github.com/TraceMachina/nativelink) [Cloud](https://app.nativelink.com/)
 
-This repository contains rules for [Bazel](https://bazel.build) that can be
-used to bundle applications for Apple platforms.
+This repository contains [several example applications](https://github.com/TraceMachina/visionOS-bazel) targeting Apple platforms and maintained by the upstream Bazel community repositorty, thought it differs in its use of [NativeLink](https://github.com/TraceMachina/nativelink). 
 
 # Building with NativeLink
 
-The Bazel builds for these apple projects can greatly benefit in efficiency and development cycles by using NativeLink for remote caching and execution.
+Using NativeLink to build these Apple projects can greatly benefit in efficiency and development cycles by using NativeLink for remote caching and execution. NativeLink is also more representative of a production environment.
 
-We have also added the [visionOS-example](https://github.com/IvanCampos/visionOS-examples) from Ivan Campos in order to highlight the value of the tool in building software that utilizes apples new custom AI chips.
+We have also added the [visionOS-example](https://github.com/IvanCampos/visionOS-examples) from Ivan Campos in order to highlight the value of the tool in building software that utilizes Apple's new custom AI chips.
 
 > [!WARNING]
 > - **The visionOS, iOS, and other simulators must be installed in the platforms section of your XCode settings before proceeding.**
