@@ -1,0 +1,48 @@
+# NOTE: These are mainly just for the BazelCI setup so they don't have
+# to be repeated multiple times in .bazelci/presubmit.yml.
+
+# https://github.com/bazelbuild/stardoc/issues/112
+common --incompatible_allow_tags_propagation
+
+# Add the PATH to the test environment so that common macOS tools can be found
+# during a test run.
+build --test_env=PATH
+
+# `bazel test` tries to build everything also by default, so skip that so the
+# *_library targets in examples/... aren't built (and fail since they are
+# platform specific).
+test --build_tests_only
+
+# TODO(https://github.com/bazelbuild/bazel/issues/7130): Remove this flag when
+# visibility and symbol import issues are resolved.
+build --nocheck_visibility
+
+# We don't need to bump some of our dependencies, just becuse our dev
+# dependencies cause us to use a newer version
+build --check_direct_dependencies=off
+
+# This is needed for Bazel 6 compatibility.
+# It's enabled (and can't be disabled) in Bazel 7.
+# TODO: Remove this once we drop Bazel 6 support.
+# See also: https://github.com/bazelbuild/bazel/issues/14327
+build --experimental_enable_aspect_hints
+
+# Disable the worker, which has sandboxing disabled by default, which can hide
+# issues with non-hermetic bugs.
+build --spawn_strategy=sandboxed,local
+build --worker_sandboxing=true
+
+# Use llvm-cov instead of gcov (default).
+coverage --experimental_use_llvm_covmap
+
+build --enable_platform_specific_config
+build:macos --apple_crosstool_top=@local_config_apple_cc//:toolchain
+build:macos --crosstool_top=@local_config_apple_cc//:toolchain
+build:macos --host_crosstool_top=@local_config_apple_cc//:toolchain
+
+## Replace these with the bazelrc config from https://app.nativelink.com in the Quickstart to use NativeLink
+# build --remote_cache=grpcs://cas-[YOUR_NAME_HERE].build-faster.nativelink.net
+# build --remote_header=x-nativelink-api-key=[YOU_NATIVELINK_API_KEY]
+# build --remote_timeout=600
+
+

@@ -1,24 +1,29 @@
-# Apple Rules for [Bazel](https://bazel.build) 
-### with Remote Cache and Execution via the free [NativeLink](https://github.com/TraceMachina/nativelink) [Cloud](https://app.nativelink.com/)
+# Remote Caching and Execution of Apple Projects using [Bazel](https://bazel.build)
 
-This repository contains [several example applications](https://github.com/TraceMachina/visionOS-bazel) targeting Apple platforms and maintained by the upstream Bazel community repositorty, thought it differs in its use of [NativeLink](https://github.com/TraceMachina/nativelink). 
+[![NativeLink](https://img.shields.io/static/v1?label=powered%20by&message=nativelink%20%E2%9D%A4&color=purple&style=flat-square)](https://nativelink.com/)
 
-# Building with NativeLink
+This repository contains a suite of example projects that use Apple Silicon and Bazel, such as visionOS, iOS, and MacOS.
+
+![Demo](./assets/NativeLink_Demo.gif)
+
+*Notice the difference in speed of the builds after NativeLink kicks in on the second run.*
+
+## The NativeLink Difference
 
 Using NativeLink to build these Apple projects can greatly benefit in efficiency and development cycles by using NativeLink for remote caching and execution. NativeLink is also more representative of a production environment.
 
 We have also added the [visionOS-example](https://github.com/IvanCampos/visionOS-examples) from Ivan Campos in order to highlight the value of the tool in building software that utilizes Apple's new custom AI chips.
 
 > [!WARNING]
-> - **The visionOS, iOS, and other simulators must be installed in the platforms section of your XCode settings before proceeding.**
+> **The visionOS, iOS, and other simulators must be installed in the platforms section of your XCode settings before proceeding.**
+> 
+> ![XCode Platforms](./assets/XCode_Platforms.png)
 >
-> [visionOS & iOS platforms](https://developer.apple.com/documentation/xcode/installing-additional-simulator-runtimes)
+> [**Platform Install Instructions**](https://developer.apple.com/documentation/xcode/installing-additional-simulator-runtimes)
 >
-> - The client build request must be done from macOS or else it won't work.
+> The client build request must be done from macOS or else it won't work.
 
-
-
-## Rules Overview
+## Setting up Apple Projects with Bazel using Rules_Apple
 
 These rules handle the linking and bundling of applications and extensions
 (that is, the formation of an `.app` with an executable and resources,
@@ -73,6 +78,16 @@ ios_application(
 
 See the [examples](https://github.com/bazelbuild/rules_apple/tree/master/examples)
 directory for sample applications.
+
+## Configuring your Bazel Project with Nativelink
+
+### Replace these with the `.bazelrc` config from [NativeLink Cloud](https://app.nativelink.com) in the Quickstart to use NativeLink
+
+```bash
+build --remote_cache=grpcs://cas-[YOUR_NAME_HERE].build-faster.nativelink.net
+build --remote_header=x-nativelink-api-key=[YOU_NATIVELINK_API_KEY]
+build --remote_timeout=600
+```
 
 ## Supported bazel versions
 

@@ -9,7 +9,7 @@
     "allowedYankedVersions": [],
     "envVarAllowedYankedVersions": "",
     "ignoreDevDependency": false,
-    "directDependenciesMode": "OFF",
+    "directDependenciesMode": "WARNING",
     "compatibilityMode": "ERROR"
   },
   "localOverrideHashes": {
